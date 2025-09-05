@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +19,7 @@ class Result_Activity : AppCompatActivity() {
     companion object {
         private const val COLOR_KEY = "COLOR_KEY"
         private const val ERROR_KEY = "ERROR_KEY"
+        private const val DEBUG_TAG = "DEBUG_TAG"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +42,13 @@ class Result_Activity : AppCompatActivity() {
             }
             val resultMessage = findViewById<TextView>(R.id.color_code_result_message)
             resultMessage.text = getString(R.string.color_code_result_message,colorCode?.uppercase())
+        }
+        Log.d(DEBUG_TAG, "onCreate")
+        findViewById<Button>(R.id.back_button).setOnClickListener{
+            startActivity(
+                Intent(this,
+                    MainActivity::class.java)
+            )
         }
     }
 }
